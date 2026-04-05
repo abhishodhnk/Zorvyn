@@ -35,38 +35,37 @@ npm run preview
 | **Categorical visualization** | Donut-style **pie chart**: expense totals **by category**. |
 | **Transactions** | Table with **date**, **amount**, **category**, **type** (income/expense), optional **note**. |
 | **Filtering / search / sort** | Category + type filters, **search** (category, note, amount), **sort** by date or amount (toggle direction). |
-| **Role-based UI** | **Viewer:** read-only (no add/edit/delete). **Admin:** add, edit, delete + reset mock data. Switch via **Admin / Viewer** pills in the overview **role card**. |
+| **Role-based UI** | **Viewer:** read-only (no add/edit/delete). **Admin:** add, edit, delete + reset mock data. |
 | **Insights** | Highest spending category, **month-over-month** expense comparison (with fallback to last two months in data if current month is empty), **savings rate** (net vs income). |
-| **State management** | **React Context** + **`useReducer`** for transactions, role, filters, sort; derived metrics via `useMemo` in components / `aggregates.js`. |
+| **State management** | **React Context** + **`useReducer`** for transactions, role, filters, sort. |
 | **UI/UX** | FINTRACK-style layout (Inter + Bebas Neue + JetBrains Mono), responsive grids, **empty states** (no data / no filter matches). |
-| **Optional extras** | **localStorage** persistence (transactions + role), **CSV export** of the **currently filtered** list, modal transitions (`prefers-reduced-motion` respected). |
+| **Optional extras** | **localStorage** persistence (transactions + role), **CSV export** of the **currently filtered** list. |
 
 ## Project structure
 
 ```
 src/
-  App.jsx                 # Page layout + footer (reset mock data)
-  App.css                 # FINTRACK black + chartreuse system
-  main.jsx                # React entry
-  context/
-    DashboardContext.jsx  # useReducer + localStorage persistence
-  data/
-    mockData.js           # Seed transactions + category list
-  components/
-    HeaderBar.jsx         # FINTRACK nav + CTA
-    HeroLanding.jsx       # Outline/solid hero + preview column
-    StatsBanner.jsx       # Live metrics strip
-    CategorySpendBars.jsx # Horizontal category bars
+  App.jsx                   # Page layout 
+  App.css                   # FINTRACK black 
+  main.jsx                  # React entry
+context/
+    DashboardContext.jsx    # useReducer + localStorage persistence
+data/
+    mockData.js             # Seed transactions + category list
+components/
+    HeaderBar.jsx           # FINTRACK nav + CTA
+    HeroLanding.jsx         # Outline/solid hero + preview column
+    StatsBanner.jsx         # Live metrics strip
+    CategorySpendBars.jsx   # Horizontal category bars
     SavingsRateCard.jsx     # Lime card + conic ring
-    RoleAccessCard.jsx    # Admin / Viewer toggles + feature list
+    RoleAccessCard.jsx      # Admin / Viewer toggles + feature list
     SummaryCards.jsx
-    ChartsSection.jsx     # Recharts area + pie
-    TransactionsPanel.jsx # Toolbar, table, export, modal trigger
-    TransactionModal.jsx  # Add / edit form
+    ChartsSection.jsx       # Recharts area + pie
+    TransactionsPanel.jsx   # Toolbar, table, export, modal trigger
+    TransactionModal.jsx    # Add / edit form
     InsightsPanel.jsx
-  utils/
-    aggregates.js         # Totals, trends, filters, insights
-    exportCsv.js          # CSV download helper
+utils/
+    exportCsv.js            # CSV download helper
 ```
 
 ## Assumptions
